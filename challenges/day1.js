@@ -38,3 +38,32 @@
 
 // Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 
+const {readFileSync} = require('fs');
+const contents = readFileSync('inputs/day1.txt', 'utf-8').trimEnd()
+
+
+function solve(contents) {
+  const elves = contents
+    .split('\n\n')
+    .map((elf) =>
+      elf
+        .split('\n')
+        .map(Number)
+        .reduce((a, c) => a + c)
+    )
+    .sort((a, b) => b - a);
+  console.log(elves[0]); //amount of cals carried by elf with most (69795)
+  console.log(elves.slice(0, 3).reduce((a, c) => a + c)); //top 3 elves total cal count (208437)
+}
+solve(contents);
+
+
+
+
+// const contentsArr = [...contents]
+// const elfArr = contentsArr[0].innerText.split('/n/n')
+// const elves = elfArr.map((elf) => elf.split('/n').map((calories) => Number(calories)))
+// const totalCals = elves.map((elf) => elf.reduce((a,c) => a + c), 0)
+// const mostCals = (calories) => Math.max(...calories)
+// const topThree = (calories) => calories.sort((a,b) => b-a).slice(0,3)
+// const topThreeCals = (calories) => topThree(calories).reduce((a,c) => a+c, 0)
